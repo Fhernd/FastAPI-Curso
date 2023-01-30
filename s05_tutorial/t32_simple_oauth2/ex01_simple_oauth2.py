@@ -76,6 +76,9 @@ async def get_current_user(token: str = Depends(ouath2_scheme)):
 
 
 async def get_current_active_user(current_user: User = Depends(get_current_user)):
+    """
+    Simula una función que obtiene un usuario actual activo a partir de un token.
+    """
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
     

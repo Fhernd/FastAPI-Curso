@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
 
-
+# Datos de prueba para simular una base de datos:
 fake_users_db = {
     "johndoe": {
         "username": "johndoe",
@@ -24,6 +24,9 @@ app = FastAPI()
 
 
 def fake_hash_password(password: str):
+    """
+    Simula una función de hash de contraseña.
+    """
     return "fakehashed" + password
 
 
@@ -42,17 +45,26 @@ class UserInDB(User):
 
 
 def get_user(db, username: str):
+    """
+    Simula una función que obtiene un usuario de una base de datos.
+    """
     if username in db:
         user_dict = db[username]
         return UserInDB(**user_dict)
     
 
 def fake_decode_token(token):
+    """
+    Simula una función que decodifica un token JWT.
+    """
     user = get_user(fake_users_db, token)
     return user
 
 
 async def get_current_user(token: str = Depends(ouath2_scheme)):
+    """
+    Simula una función que obtiene un usuario actual a partir de un token.    
+    """
     user = fake_decode_token(token)
     if user is None:
         raise HTTPException(

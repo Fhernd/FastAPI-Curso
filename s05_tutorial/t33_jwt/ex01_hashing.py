@@ -29,8 +29,6 @@ fake_users_db = {
     },
 }
 
-app = FastAPI()
-
 
 class Token(BaseModel):
     access_token: str
@@ -52,14 +50,26 @@ class UserInDB(User):
     hashed_password: str
 
 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+ouath2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+app = FastAPI()
+
+
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
+
+def get_password_hash(password):
+    return pwd_context.hash(password)
+
+
 def fake_hash_password(password: str):
     """
     Simula una función de hash de contraseña.
     """
     return "fakehashed" + password
-
-
-ouath2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def get_user(db, username: str):

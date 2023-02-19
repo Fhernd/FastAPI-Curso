@@ -65,13 +65,6 @@ def get_password_hash(password):
     return pwd_context.hash(password)
 
 
-def fake_hash_password(password: str):
-    """
-    Simula una función de hash de contraseña.
-    """
-    return "fakehashed" + password
-
-
 def get_user(db, username: str):
     """
     Simula una función que obtiene un usuario de una base de datos.
@@ -81,11 +74,13 @@ def get_user(db, username: str):
         return UserInDB(**user_dict)
     
 
-def fake_decode_token(token):
-    """
-    Simula una función que decodifica un token JWT.
-    """
-    user = get_user(fake_users_db, token)
+def authenticate_user(fake_db, username: str, password: str):
+    user = get_user(fake_db, username)
+    if not user:
+        return False
+    if not verify_password(password, user.hashed_password):
+        return False
+    
     return user
 
 

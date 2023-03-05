@@ -169,4 +169,23 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
 
 @app.get("/users/me")
 async def read_users_me(current_user: User = Depends(get_current_active_user)):
+    """
+    Obtiene el usuario actual.
+
+    :param current_user: Usuario actual.
+
+    :return: Usuario actual.
+    """
     return current_user
+
+
+@app.get("/users/me/items")
+async def read_own_items(current_user: User = Depends(get_current_active_user)):
+    """
+    Obtiene los items del usuario actual.
+
+    :param current_user: Usuario actual.
+
+    :return: Items del usuario actual.
+    """
+    return [{"item_id": "Foo", "owner": current_user.username}]

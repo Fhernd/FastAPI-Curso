@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS</title>
+</head>
+<body>
+    <h1>CORS</h1>
+    
+    <script>
+        const url = "http://localhost:8000/";
+        const options = {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        };
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+    </script>
+</body>
+</html>

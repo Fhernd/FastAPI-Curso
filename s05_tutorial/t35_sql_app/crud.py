@@ -9,6 +9,8 @@ def get_user(db: Session, user_id: int):
 
     :param db: database session
     :param user_id: user ID
+
+    :return: User with given ID or None if not found.
     """
     return db.query(models.User).filter(models.User.id == user_id).first()
 
@@ -19,6 +21,8 @@ def get_user_by_email(db: Session, email: str):
 
     :param db: database session
     :param email: user email
+
+    :return: User with given email or None if not found.
     """
     return db.query(models.User).filter(models.User.email == email).first()
 
@@ -30,6 +34,8 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     :param db: database session
     :param skip: skip first N users
     :param limit: limit users to N
+
+    :return: List of users.
     """
     return db.query(models.User).offset(skip).limit(limit).all()
 

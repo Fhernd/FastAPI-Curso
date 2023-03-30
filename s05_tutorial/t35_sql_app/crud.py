@@ -51,3 +51,16 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.refresh(db_user)
 
     return db_user
+
+
+def get_items(db: Session, skip: int = 0, limit: int = 100):
+    """
+    Get items.
+
+    :param db: database session
+    :param skip: skip first N items
+    :param limit: limit items to N
+
+    :return: List of items.
+    """
+    return db.query(models.Item).offset(skip).limit(limit).all()

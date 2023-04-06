@@ -72,3 +72,18 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     
     return db_user
+
+
+@app.post("/users/{user_id}/items/", response_model=schemas.Item)
+def create_item_for_user(
+        user_id: int, item: schemas.ItemCreate, db: Session = Depends(get_db)):
+    """
+    Create item for user.
+
+    :param user_id: User ID
+    :param item: Item to create
+    :param db: Database session
+
+    :return: Created item.
+    """
+    return crud.create_user_item(db=db, item=item, user_id=user_id)

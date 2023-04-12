@@ -5,6 +5,9 @@ from .database import Base
 
 
 class User(Base):
+    """
+    User model for SQLAlchemy.
+    """
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -16,6 +19,9 @@ class User(Base):
 
 
 class Item(Base):
+    """
+    Item model for SQLAlchemy.
+    """
     __tablename__ = "items"
 
     id = Column(Integer, primary_key=True, index=True)

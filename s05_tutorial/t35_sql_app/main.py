@@ -24,17 +24,13 @@ async def db_session_middleware(request: Request, call_next):
     return response
 
 
-def get_db():
+def get_db(request: Request):
     """
     Dependency for database session.
 
     :return: Database session.
     """
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+    return request.state.db
 
 
 @app.post("/users/", response_model=schemas.User)

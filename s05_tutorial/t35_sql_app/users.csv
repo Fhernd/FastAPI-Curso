@@ -1,0 +1,3 @@
+id;email;hashed_password;is_active
+1;john@mail.co;john123@notreallyhashed;1
+2;edward@mail.co;edward123@notreallyhashed;1

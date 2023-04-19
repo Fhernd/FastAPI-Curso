@@ -21,3 +21,13 @@ async def read_user_me():
     -returns: current user
     """
     return {"username": "fakecurrentuser"}
+
+
+@router.get("/users/{username}", tags=["users"])
+async def read_user(username: str):
+    """
+    Get a specific user.
+
+    -returns: a specific user
+    """
+    return {"username": username}

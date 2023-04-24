@@ -37,3 +37,16 @@ async def read_item(item_id: str):
     
     return fake_items_db[item_id]
 
+
+@router.put('/{item_id}', tags=['custom'], responses={403: {'description': 'Operation forbidden'}})
+async def update_item(item_id: str):
+    """
+    Update a specific item.
+
+    :param: item_id: Item ID
+    -returns: a specific item
+    """
+    if item_id not in fake_items_db:
+        raise HTTPException(status_code=404, detail='Item not found')
+    
+    return {'item_id': item_id, 'name': 'The great Plumbus'}

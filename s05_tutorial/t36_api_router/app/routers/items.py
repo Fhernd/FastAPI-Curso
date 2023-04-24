@@ -24,3 +24,16 @@ async def read_items():
     return fake_items_db
 
 
+@router.get('/{item_id}')
+async def read_item(item_id: str):
+    """
+    Get a specific item.
+
+    :param: item_id: Item ID
+    -returns: a specific item
+    """
+    if item_id not in fake_items_db:
+        raise HTTPException(status_code=404, detail='Item not found')
+    
+    return fake_items_db[item_id]
+

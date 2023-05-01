@@ -1,3 +1,5 @@
+import time
+
 from fastapi import BackgroundTasks, FastAPI
 
 app = FastAPI()
@@ -10,9 +12,11 @@ def write_notification(email: str, message=''):
     :param email: email address
     :param message: message to be written
     """
-    with open('log.txt', mode='w') as email_file:
+    with open('log_20230501.txt', mode='w') as email_file:
         content = f'notification for {email}: {message}\n'
+        time.sleep(10)
         email_file.write(content)
+        time.sleep(2)
 
 
 @app.post('/send-notification/{email}')

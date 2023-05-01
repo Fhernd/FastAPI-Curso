@@ -21,3 +21,13 @@ async def read_admin_me():
     -returns: current admin
     """
     return {"username": "fakecurrentadmin"}
+
+
+@router.post('/')
+async def update_admin():
+    """
+    Update admin.
+    
+    -returns: admin
+    """
+    return {"message": "Admin getting schwifty"}

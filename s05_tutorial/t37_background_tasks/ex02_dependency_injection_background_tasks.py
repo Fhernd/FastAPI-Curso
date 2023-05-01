@@ -35,7 +35,7 @@ def get_query(background_tasks: BackgroundTasks, q: str | None = None):
 async def send_notification(
         email: str,
         background_tasks: BackgroundTasks,
-        q: Annotated[str | None, Depends(get_query)] = None
+        q: Annotated[str | None, Depends(get_query)]
 ):
     """
     Send notification to a user

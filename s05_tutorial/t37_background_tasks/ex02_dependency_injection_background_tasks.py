@@ -29,3 +29,24 @@ def get_query(background_tasks: BackgroundTasks, q: str | None = None):
         background_tasks.add_task(write_log, message)
     
     return q
+
+
+@app.post('/send-notification/{email}')
+async def send_notification(
+        email: str,
+        background_tasks: BackgroundTasks,
+        q: Annotated[str | None, Depends(get_query)] = None
+):
+    """
+    Send notification to a user
+    
+    :param email: email address
+    :param background_tasks: background tasks
+    :param q: query
+    
+    :return: message
+    """
+    message = f'Message to {email}'
+    background_tasks.add_task(write_log, message)
+    
+    return {'message': 'Message sent'}

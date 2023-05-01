@@ -14,6 +14,7 @@ def write_notification(email: str, message=''):
         content = f'notification for {email}: {message}\n'
         email_file.write(content)
 
+
 @app.post('/send-notification/{email}')
 async def send_notification(email: str, background_tasks: BackgroundTasks):
     """

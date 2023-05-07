@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 
-app = FastAPI()
+app = FastAPI(docs_url='/documentacion', redoc_url=None)
 
 
 @app.get('/items/')

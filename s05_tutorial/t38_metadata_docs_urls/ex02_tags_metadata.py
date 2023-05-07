@@ -27,3 +27,13 @@ async def get_users():
     :returns: List of users.
     """
     return [{"name": "Harry"}, {"name": "Ron"}]
+
+
+@app.get("/items/", tags=["items"])
+async def get_items():
+    """
+    Get all items.
+    
+    :returns: List of items.
+    """
+    return [{"name": "wand"}, {"name": "flying broom"}]

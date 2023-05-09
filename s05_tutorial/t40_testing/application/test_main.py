@@ -33,3 +33,22 @@ def test_read_item_bad_token():
     assert response.json() == {
         'detail': 'X-Token header invalid'
     }
+
+
+def test_create_item():
+    """
+    Check that the endpoint creates an item.
+    """
+    
+    response = client.post(
+        '/items/',
+        headers={"X-Token": "llosavargasmario"},
+        json={"id": "foobar", "title": "Foo Bar", "description": "The Foo Barters"}
+    )
+    
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": "foobar",
+        "title": "Foo Bar",
+        "description": "The Foo Barters",
+    }

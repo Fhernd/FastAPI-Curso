@@ -24,3 +24,19 @@ class Item(BaseModel):
 
 
 @app.get("/items/{item_id}", response_model=Item)
+async def read_main(item_id: str, x_token: Annotated[str, Header()]):
+    """
+    Busca un item en la base de datos.
+    
+    :param item_id: ID del item a buscar.
+    :param x_token: Token de autenticación.
+    """
+    if x_token != fake_secret_token:
+        raise HTTPException(status_code=400, detail="X-Token header invalid")
+    if item_id not in fake_db:
+        raise HTTPException(status_code=404, detail="Item not found")
+    
+    return fake_db[item_id]
+
+
+@app.post("/items", response_model=Item)

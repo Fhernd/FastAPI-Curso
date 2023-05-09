@@ -14,5 +14,13 @@ fake_db = {
 app = FastAPI()
 
 
+class Item(BaseModel):
+    """
+    Representación de un item.
+    """
+    id: str
+    title: str
+    description: str | None = None
 
 
+@app.get("/items/{item_id}", response_model=Item)

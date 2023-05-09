@@ -40,3 +40,18 @@ async def read_main(item_id: str, x_token: Annotated[str, Header()]):
 
 
 @app.post("/items", response_model=Item)
+async def create_item(item: Item, x_token: Annotated[str, Header(...)]):
+    """
+    Crea un item en la base de datos.
+    
+    :param item: Item a crear.
+    :param x_token: Token de autenticación.
+    """
+    if x_token != fake_secret_token:
+        raise HTTPException(status_code=400, detail="X-Token header invalid")
+    if item.id in fake_db:
+        raise HTTPException(status_code=400, detail="Item already exists")
+
+    fake_db[item.id] = item
+    
+    return item

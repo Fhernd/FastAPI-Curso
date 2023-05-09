@@ -52,3 +52,20 @@ def test_create_item():
         "title": "Foo Bar",
         "description": "The Foo Barters",
     }
+
+
+def test_create_item_bad_token():
+    """
+    Check that the endpoint returns an error if the token is invalid.
+    """
+    response = client.post(
+        "/items/",
+        headers={"X-Token": "mendozamario"},
+        json={"id": "bazz", "title": "Bazz", "description": "Drop the bazz"},
+    )
+    
+    assert response.status_code == 400
+    assert response.json() == {"detail": "Invalid X-Token header"}
+
+
+

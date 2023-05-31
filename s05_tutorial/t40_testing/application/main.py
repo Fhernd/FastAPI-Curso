@@ -31,8 +31,9 @@ async def read_main(item_id: str, x_token: Annotated[str, Header()]):
     :param item_id: ID del item a buscar.
     :param x_token: Token de autenticación.
     """
+    print('x_token', x_token)
     if x_token != fake_secret_token:
-        raise HTTPException(status_code=400, detail="X-Token header invalid")
+        raise HTTPException(status_code=400, detail="Invalid X-Token header")
     if item_id not in fake_db:
         raise HTTPException(status_code=404, detail="Item not found")
     

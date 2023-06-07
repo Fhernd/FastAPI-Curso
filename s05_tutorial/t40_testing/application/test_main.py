@@ -9,14 +9,13 @@ def test_read_item():
     """
     Check that the endpoint returns the correct item.
     """
-    response = client.get("https://randomuser.me/api")
-    print('response', response)
+    response = client.get("/items/foo?x_token=llosavargasmario")
     assert response.status_code == 200
-    # assert response.json() == {
-    #     "id": "foo",
-    #     "title": "Foo",
-    #     "description": "There goes my hero",
-    # }
+    assert response.json() == {
+        "id": "foo",
+        "title": "Foo",
+        "description": "There goes my hero",
+    }
 
 
 def test_read_item_bad_token():

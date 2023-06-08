@@ -24,7 +24,7 @@ class Item(BaseModel):
 
 
 @app.get("/items/{item_id}", response_model=Item)
-async def read_main(item_id: str, x_token: Annotated[str, Header()]):
+async def read_main(item_id: str, x_token: str | None = Header(default=None)):
     """
     Busca un item en la base de datos.
     

@@ -28,7 +28,7 @@ def test_read_item_bad_token():
     assert response.status_code == 400
     
     assert response.json() == {
-        'detail': 'X-Token header invalid'
+        'detail': 'Invalid X-Token header'
     }
 
 

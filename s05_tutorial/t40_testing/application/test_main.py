@@ -62,6 +62,7 @@ def test_create_item_bad_token():
     )
     
     assert response.status_code == 400
+    print(response.json())
     assert response.json() == {"detail": "Invalid X-Token header"}
 
 

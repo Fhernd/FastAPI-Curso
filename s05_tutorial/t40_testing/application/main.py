@@ -49,7 +49,7 @@ async def create_item(item: Item, x_token: str | None = Header(default=None)):
     :param x_token: Token de autenticación.
     """
     if x_token != fake_secret_token:
-        raise HTTPException(status_code=400, detail="X-Token header invalid")
+        raise HTTPException(status_code=400, detail="Invalid X-Token header")
     if item.id in fake_db:
         raise HTTPException(status_code=400, detail="Item already exists")
 

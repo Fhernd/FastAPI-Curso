@@ -41,7 +41,7 @@ async def read_main(item_id: str, x_token: str | None = Header(default=None)):
 
 
 @app.post("/items", response_model=Item)
-async def create_item(item: Item, x_token: Annotated[str, Header(...)]):
+async def create_item(item: Item, x_token: str | None = Header(default=None)):
     """
     Crea un item en la base de datos.
     

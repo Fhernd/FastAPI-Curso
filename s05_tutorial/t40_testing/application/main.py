@@ -40,7 +40,7 @@ async def read_main(item_id: str, x_token: str | None = Header(default=None)):
     return fake_db[item_id]
 
 
-@app.post("/items", response_model=Item)
+@app.post("/items/", response_model=Item)
 async def create_item(item: Item, x_token: str | None = Header(default=None)):
     """
     Crea un item en la base de datos.

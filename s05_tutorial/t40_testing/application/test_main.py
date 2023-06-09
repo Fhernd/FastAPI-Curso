@@ -70,7 +70,7 @@ def test_create_existing_item():
         "/items/",
         headers={"X-Token": "llosavargasmario"},
         json={
-            "id": "foo",
+            "id": "foobar",
             "title": "The Foo ID Stealers",
             "description": "There goes my stealer",
         },

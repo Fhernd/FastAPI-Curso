@@ -32,6 +32,17 @@ def test_read_item_bad_token():
     }
 
 
+def test_read_inexistent_item():
+    """
+    Check that the endpoint returns an error if the item does not exist.
+    """
+    
+    response = client.get("/items/baz", headers={"X-Token": "llosavargasmario"})
+    
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Item not found"}
+
+
 def test_create_item():
     """
     Check that the endpoint creates an item.

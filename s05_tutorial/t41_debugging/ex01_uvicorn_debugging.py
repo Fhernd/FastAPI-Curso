@@ -10,7 +10,7 @@ def root():
     Check that the endpoint returns the correct item.
     """
     a = 'a'
-    b = 'b' + a
+    b = a + 'b'
     
     return {'hello world': b}
 

@@ -11,3 +11,11 @@ async def read_items():
     :return: Lista de ítems.
     """
     return [{'item_id': 'Foo'}]
+
+
+@app.get('/users/', tags=['users'])
+async def get_users():
+    """
+    Obtiene un conjunto de usuarios.
+    """
+    return [{'username': 'johndoe'}, {'username': 'alice'}]

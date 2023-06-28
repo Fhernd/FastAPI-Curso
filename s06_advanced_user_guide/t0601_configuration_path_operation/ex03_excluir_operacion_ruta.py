@@ -3,7 +3,7 @@ from fastapi import FastAPI
 app = FastAPI()
 
 
-@app.get('/items/', operation_id='some_specific_id_you_define')
+@app.get('/items/', include_in_schema=False)
 async def read_items():
     """
     Lee un conjunto de ítems.

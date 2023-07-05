@@ -5,6 +5,14 @@ app = FastAPI()
 
 @app.get('/legacy/')
 def get_legacy_data():
+    """
+    This endpoint returns a legacy data.
+    
+    Returns:
+    --------
+    Response: Response. Respuesta en formato XML.
+    """
+    
     data = """<?xml version="1.0"?>
     <shampoo>
     <Header>

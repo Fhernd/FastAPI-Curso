@@ -9,7 +9,7 @@ async def fake_video_streamer():
     This is a generator that yields bytes as it is received from a video stream.
     """
     for i in range(10):
-        yield b'frame %s\n' % i
+        yield b"some fake video bytes"
 
 
 @app.get('/')

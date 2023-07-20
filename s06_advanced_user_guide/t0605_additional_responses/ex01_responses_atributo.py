@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class Item(BaseModel):
-    id: int
+    id: str
     value: str
 
 
